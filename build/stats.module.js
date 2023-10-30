@@ -39,6 +39,9 @@ var Stats = function () {
 	//
 
 	var beginTime = ( performance || Date ).now(), prevTime = beginTime, frames = 0;
+	var fps = 0;
+	var avgFpsTrackStartTime = 0;
+	var totalFrames = 0;
 
 	var fpsPanel = addPanel( new Stats.Panel( 'FPS', '#0ff', '#002' ) );
 	var msPanel = addPanel( new Stats.Panel( 'MS', '#0f0', '#020' ) );
@@ -63,20 +66,22 @@ var Stats = function () {
 		begin: function () {
 
 			beginTime = ( performance || Date ).now();
+			avgFpsTrackStartTime = ( performance || Date ).now();
 
 		},
 
 		end: function () {
 
 			frames ++;
+			totalFrames++;
 
 			var time = ( performance || Date ).now();
 
 			msPanel.update( time - beginTime, 200 );
 
 			if ( time >= prevTime + 1000 ) {
-
-				fpsPanel.update( ( frames * 1000 ) / ( time - prevTime ), 100 );
+				fps = ( frames * 1000 ) / ( time - prevTime );
+				fpsPanel.update(fps, 100 );
 
 				prevTime = time;
 				frames = 0;
@@ -98,6 +103,21 @@ var Stats = function () {
 
 			beginTime = this.end();
 
+		},
+
+		getFPS: function () {
+			return Math.round(fps);
+		},
+
+		startTrackAverageFps: function () {
+			avgFpsTrackStartTime = ( performance || Date ).now();
+			totalFrames = 0;
+		},
+
+		getGeneralAverageFPS: function () {
+			var now = ( performance || Date ).now();
+			var delta = now - avgFpsTrackStartTime;
+			return Math.round((totalFrames * 1000) / delta);
 		},
 
 		// Backwards Compatibility

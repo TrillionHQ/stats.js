@@ -1,10 +1,11 @@
 {
-  "name": "stats.js",
-  "version": "0.17.0",
+  "name": "@trillionhq/stats.js",
+  "version": "0.22.0",
   "description": "JavaScript Performance Monitor",
   "main": "build/stats.js",
   "module": "build/stats.module.js",
-  "repository": "mrdoob/stats.js",
+  "types": "build/stats.module.d.ts",
+  "repository": "TrillionHQ/stats.js",
   "directories": {
     "example": "examples"
   },
@@ -15,7 +16,9 @@
   "scripts": {
     "build": "rollup -c",
     "build-closure": "rollup -c && google-closure-compiler --language_in=ECMASCRIPT5_STRICT --js build/stats.js --js_output_file build/stats.min.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-all": "npm run build && npm run build-closure",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish-npm": "npm publish --access public"
   },
   "keywords": [
     "performance",
@@ -24,10 +27,6 @@
   ],
   "author": "mrdoob",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mrdoob/stats.js/issues"
-  },
-  "homepage": "https://github.com/mrdoob/stats.js",
   "devDependencies": {
     "rollup": "^2.3.2",
     "google-closure-compiler": "20200224.0.0"

@@ -37,6 +37,8 @@ function animate() {
 
 	// monitored code goes here
 
+	const fps = stats.getFPS();
+
 	stats.end();
 
 	requestAnimationFrame( animate );
@@ -44,6 +46,8 @@ function animate() {
 }
 
 requestAnimationFrame( animate );
+
+const averageFps = stats.getGeneralAverageFPS();
 ```
 
 
