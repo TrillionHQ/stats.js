@@ -46,7 +46,7 @@
 
 		var beginTime = ( performance || Date ).now(), prevTime = beginTime, frames = 0;
 		var fps = 0;
-		var avgFpsTrackStartTime = 0;
+		var avgFpsTrackStartTime = ( performance || Date ).now();
 		var totalFrames = 0;
 
 		var fpsPanel = addPanel( new Stats.Panel( 'FPS', '#0ff', '#002' ) );
@@ -72,7 +72,6 @@
 			begin: function () {
 
 				beginTime = ( performance || Date ).now();
-				avgFpsTrackStartTime = ( performance || Date ).now();
 
 			},
 
