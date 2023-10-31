@@ -1,6 +1,6 @@
 {
   "name": "@trillionhq/stats.js",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "description": "JavaScript Performance Monitor",
   "main": "build/stats.js",
   "module": "build/stats.module.js",
